@@ -1,43 +1,69 @@
 import React, { useState } from "react";
 
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { deleteProduct } from "../../core/actions/costsActions";
+import { productsCostsSelector } from "../../core/selectors/costsSelector";
+
 import TableCosts from "../../components/TableCosts/TableCosts";
 import Title from "../../components/Title/Title";
 import ButtonCosts from "../../components/ButtonCosts/ButtonCosts";
+import TextInput from "../../components/TextInput/TextInput";
 
 import "./style.css";
 
-const CostsContainer = () => {
-  const [newProduct, handleAddNewProduct] = useState("");
+const CostsContainer = ({ products, deleteProduct }) => {
+  const [newProduct, handleNewProduct] = useState("");
 
-  const addNewProduct = () => {
-    handleAddNewProduct()
+  const addNewProduct = () => {};
+  const deleteProductHandle = id => {
+    deleteProduct(id);
   };
-  const deleteProduct = () => {};
-
+  const handleNewProductInput = () => {};
   return (
     <div className="costs">
       <div className="costs__header">
-        <Title h1="Расходы"></Title>
+        <Title h1="Расходы" />
         <ButtonCosts title="Новости" state="info" />
       </div>
       <div className="costs__table">
-        <TableCosts></TableCosts>
+        <TableCosts products={products} onClick={deleteProductHandle} />
       </div>
       <div className="costs__footer">
-        <ButtonCosts title="Удалить" state="danger" onClick={addNewProduct} />
-        {/* <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" /> */}
-        <ButtonCosts title="Добавить" state="primary" onClick={deleteProduct} />
+        <TextInput
+          placeholder="Введите товар"
+          type="text"
+          onChange={handleNewProductInput}
+        />
+        <TextInput
+          type="number"
+          placeholder="Количество"
+          onChange={handleNewProductInput}
+          min={0}
+          max={100}
+          step="1"
+        />
+        <TextInput
+          type="number"
+          placeholder="Цена за единицу"
+          onChange={handleNewProductInput}
+          min={0}
+          max={1000}
+          step="1"
+        />
+        <ButtonCosts title="Добавить" state="primary" onClick={addNewProduct} />
       </div>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  // filterMovie: getFilterMovieSelector(state)
+  products: productsCostsSelector(state)
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ }, dispatch);
+  bindActionCreators({ deleteProduct }, dispatch);
 
 export default connect(
   mapStateToProps,
