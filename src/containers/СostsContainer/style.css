@@ -1,0 +1,20 @@
+.costs {
+  display: flex;
+  flex-direction: column;
+}
+
+.costs__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.costs__table {
+  margin-top: 24px;
+}
+
+.costs__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
