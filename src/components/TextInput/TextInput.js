@@ -2,7 +2,7 @@ import React from "react";
 
 import { Input } from "reactstrap";
 
-const TextInput = ({ placeholder, type, onChange, min, max, step }) => {
+const TextInput = ({ placeholder, type, onChange, min, max, step, value }) => {
   return (
     <Input
       type={type}
@@ -13,6 +13,7 @@ const TextInput = ({ placeholder, type, onChange, min, max, step }) => {
       min={min}
       max={max}
       step={step}
+      value={value}
     />
   );
 };

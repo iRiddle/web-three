@@ -8,7 +8,6 @@ const TableCosts = ({ products, onClick }) => {
     <Table dark>
       <thead>
         <tr>
-          <th>#</th>
           <th>Товар</th>
           <th>Количество</th>
           <th>Стоимость за ед.</th>
@@ -18,8 +17,7 @@ const TableCosts = ({ products, onClick }) => {
       <tbody>
         {products.map(product => (
           <tr key={product.id}>
-            <th scope="row">{product.id}</th>
-            <td>{product.title}</td>
+            <th scope="row">{product.title}</th>
             <td>{product.count}</td>
             <td>{product.unitCost}</td>
             <td>{product.unitCost * product.count} </td>

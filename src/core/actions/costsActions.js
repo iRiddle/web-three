@@ -1,6 +1,6 @@
 import { ADD_NEW_PRODUCT, DELETE_PRODUCT } from "../constants";
 
-export const getWeatherFulfilled = data => ({
+export const addProduct = data => ({
   type: ADD_NEW_PRODUCT,
   payload: data
 });
